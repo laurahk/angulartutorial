@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- creates an angular app (runs the module named store) when the document loads
+    treats the html within this block as part of the angular app -->
+<html ng-app="store">
+  <head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <head>
+  <body>
+    <!-- attach a controller to the div element, need the alias -->
+    <div ng-controller="StoreController as store" ng-hide="store.product.soldOut">
+      <h1>{{store.product.name}}</h1>
+      <h2>${{store.product.price}}<h2>
+      <p>{{store.product.description}}</p>
+      <button ng-show="store.product.canPurchase">Add to cart</button>
+    </div>
+     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+     <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>

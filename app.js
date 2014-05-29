@@ -7,17 +7,26 @@
   // the function is the code run when the StoreController is called
   app.controller('StoreController', function() {
     // properties of the controller
-    this.product = gem;
+    this.products = gems;
   });
 
   // a javascript object of something to sell in store
-  var gem = {
-    name: 'Dodecahedron',
-    price: 2.95,
-    description: 'Has 12 faces',
-    canPurchase: false,
-    soldOut: true,
-  }
+  var gems = [
+    {
+      name: 'Dodecahedron',
+      price: 2.95,
+      description: 'Has 12 faces',
+      canPurchase: true,
+      soldOut: true,
+    },
+    {
+      name: 'Pentagonal Gem',
+      price: 5.95,
+      description: 'Has 5 faces',
+      canPurchase: true,
+      soldOut: false,
+    },
+  ]
 
 })();
 

@@ -5,13 +5,16 @@
   <head>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <head>
-  <body>
-    <!-- attach a controller to the div element, need the alias -->
-    <div ng-controller="StoreController as store" ng-hide="store.product.soldOut">
-      <h1>{{store.product.name}}</h1>
-      <h2>${{store.product.price}}<h2>
-      <p>{{store.product.description}}</p>
-      <button ng-show="store.product.canPurchase">Add to cart</button>
+     <!-- attach a controller to the body element, need the alias -->
+  <body ng-controller="StoreController as store" >
+    <!-- instead of accessing each product with an index, use ng-repeat ]
+    not the difference with 'as' with alias and 'in' with repeat
+    cannot put the controller and repeat on same element in this way -->
+    <div ng-repeat="product in store.products" ng-hide="product.soldOut">
+      <h1>{{product.name}}</h1>
+      <h2>${{product.price}}<h2>
+      <p>{{product.description}}</p>
+      <button ng-show="product.canPurchase">Add to cart</button>
     </div>
      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
      <script type="text/javascript" src="app.js"></script>

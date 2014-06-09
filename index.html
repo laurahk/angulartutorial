@@ -4,16 +4,49 @@
 <html ng-app="store">
   <head>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <head>
+  </head>
      <!-- attach a controller to the body element, need the alias -->
   <body ng-controller="StoreController as store" >
     <!-- instead of accessing each product with an index, use ng-repeat ]
     not the difference with 'as' with alias and 'in' with repeat
     cannot put the controller and repeat on same element in this way -->
-    <div ng-repeat="product in store.products" ng-hide="product.soldOut">
-      <h1>{{product.name}}</h1>
-      <h2>${{product.price}}<h2>
-      <p>{{product.description}}</p>
+    <div style="width: 30%; margin: 10px auto;">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="product in store.products" ng-hide="product.soldOut">
+          <h1>{{product.name}}</h1>
+          <h2 class="pull-right">${{product.price}}</h2>
+          <!-- gallery -->
+          <div ng-controller="GalleryController as gallery">
+            <div>
+              <img ng-src="{{product.images[gallery.currentImage]}}" style="padding-left: 50px;">
+            </div>
+            <div class="img-thumbnail" ng-repeat="image in product.images">
+              <img width="100" ng-src={{image}} ng-click="gallery.setCurrentImage($index)">
+            </div>
+          </div>
+          <!-- end gallery -->
+          <!-- tabs -->
+          <div ng-controller="TabController as tab">
+            <ul class="nav nav-tabs">
+              <li>
+                <a href ng-click="tab.setTab(1)">Description</a>
+              </li>
+              <li>
+                <a href ng-click="tab.setTab(2)">Reviews</a>
+              </li>
+            </ul>
+            <div ng-show="tab.isActiveTab(1)">
+              <h4>Description</h4>
+              <p>{{product.description}}</p>
+            </div>
+            <div ng-show="tab.isActiveTab(2)">
+              <h4>Reviews</h4>
+              <p>No reviews yet</p>
+            </div>
+          </div>
+          <!-- end tabs -->
+        </li>
+      </ul>
       <button ng-show="product.canPurchase">Add to cart</button>
     </div>
      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
